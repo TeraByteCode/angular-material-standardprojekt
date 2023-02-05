@@ -1,4 +1,33 @@
 {
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "angular.ng-template",
+    //Dieses Erweiterungspaket enthält einige der beliebtesten Angular-Erweiterungen.
+    "doggy8088.angular-extension-pack",
+    "donjayamanne.githistory",
+    //Überschreibt die Arbeitsbereichseinstellungen mit den Einstellungen aus den .editorconfig-Dateien.
+    "EditorConfig.EditorConfig",
+    //Automatisches Umbenennen von gepaarten HTML/XML-Tags, wie es auch Visual Studio IDE macht.
+    "formulahendry.auto-rename-tag",
+    //Einfaches Navigieren im Angular2-Projekt Dateien.
+    "infinity1207.angular2-switcher",
+    //Wandelt JSON-Objekt in Typescript-Interfaces um
+    "MariusAlchimavicius.json-to-ts",
+    //Bittet TypeScript- und Html-Schnipsel und Code-Beispiele für Angular
+    "Mikael.Angular-BeastCode",
+    //Macht Zeichen, die schädlich sein können, weil sie unsichtbar sichtbar.
+    "nhoizey.gremlins",
+    //Ermöglicht schnelleres Refactoring in der es erlaubt, HTML in eine neue Komponente zu extrahieren
+    "obenjiro.arrr",
+    //Es ermöglicht die automatische Generierung detaillierter JSDoc-Kommentare für TypeScript- und JavaScript-Dateien.
+    "oouo-diogo-perdigao.docthis",
+    //Springt in Code zur richtigen CSS-Datei oder springt durch Selektoren zur richtigen Datei.
+    "pranaygp.vscode-css-peek",
+    //SVG-Vorschau
+    "SimonSiefke.svg-preview",
+    //Unterstützung bei der Erstellung von konventionellen Commits
+    "vivaxy.vscode-conventional-commits",
+    //Hebt TODO- und FIXME-Anmerkungen im Code hervor
+    "wayou.vscode-todo-highlight"
+  ]
 }
