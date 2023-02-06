@@ -1,27 +1,99 @@
-# AngularMaterialStandardprojekt
+# Angular Material Standardprojekt
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
+Dieses Projekt dient als Vorlagenprojekt, um Angurlar-Projekte mit Material Design zu realisieren.
 
-## Development server
+Alle AddOns und Funktionen, habe ich mit Kommentare versehen, um zu wissen warum oder wofür sie gut sind.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Die folgenden Dateien wurden bearbeitet oder ergänzt:**
 
-## Code scaffolding
+- .vscode\extensions.json
+- .vscode\settings.json
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Die folgenden Dev. Tools wurden hinzugefügt:**
 
-## Build
+- Conventionalcommits
+- Commitlint
+- GitHooks
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Warum konventionelle Commits verwenden?
 
-## Running unit tests
+- Ermöglicht die automatische Erstellung der CHANGELOG-Datei.
+- Automatische Ermittlung von Versionsänderungen nach SemVer (basierend auf den verwendeten Commit-Typen).
+- Teit den anderen Teammitgliedern oder anderen interessierten Personen die Art der Änderungen mit.
+- Auslösen der Build- und Deployment- oder Release-Prozesse.
+- Erleichtert anderen, zum Projekt beizutragen, indem man erlaubt, die Commit-Historie auf strukturiertere Weise zu erkunden.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# VSCode Arbeitsumgebung Vorbereiten
 
-## Running end-to-end tests
+## Commitlint, Conventionalcommits und Husky
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```sh
+npm i --save-dev @commitlint/cli @commitlint/config-conventional
+```
 
-## Further help
+Erstelle die Datei commitlint-config.js in das Stammverzeichnis ein, damit erbt commitlint die Normen von Conventionalcommits
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```sh
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+```
+
+Hier werden wir Husky verwende um die Commits zu verbessern.
+Es kann aber auch zum Ausführen von Tests, zum Linting von Code usw. sowie vor oder nach einem Commit oder push verwendet werden.
+[Wenn es zu dem Fehler kommt, findest du hier Hilfe](https://stackoverflow.com/questions/63244379/how-to-fix-syntaxerror-invalid-or-unexpected-token-when-trying-to-run-node-js)
+
+```sh
+npm i -D husky
+```
+
+Damit fügen wir husky install zur package.json hinzu
+
+```sh
+npm pkg set scripts.prepare="husky install"
+```
+
+Husky im Projekt installieren:
+
+```sh
+npm run prepare
+```
+
+Wir fügen nun eine neue Regel zum Pre-Commit-Hook hinzu, um zu prüfen und zu validieren, ob die Commit-Nachricht den Regeln der Conventional-Commits-Konvention entspricht. Das muss nur einmal ausgeführt werden.
+
+```sh
+npx husky add .husky/commit-msg "npx --no -- commitlint --edit ${1}"
+```
+
+Wenn man jetzt eine unkonventionelle Commit erstellt, erhält man eine Meldung:
+
+```sh
+git add .
+git commit -am 'test'
+
+⧗   input: test
+✖   Please add rules to your `commitlint.config.js`
+    - Getting started guide: https://commitlint.js.org/#/?id=getting-started
+    - Example config: https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/config-conventional/index.js [empty-rules]
+
+✖   found 1 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+husky - commit-msg hook exited with code 1 (error)
+```
+
+Conventional-Changelog installieren:
+
+```sh
+npm i -g conventional-changelog-cli
+```
+
+CHANGELOG Alias einrichten:
+
+```sh
+npm pkg set scripts.changelog="conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+```
+
+mit `npm run changelog` wird der Alias ausgeführt
+
+Nützliche Links:
+
+- https://commitlint.js.org/
